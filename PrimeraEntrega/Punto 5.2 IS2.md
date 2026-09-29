@@ -1,8 +1,3 @@
-
-
-Entrega 1 IS2 1
-
-
 ## Estudiantes: Manuela Palacio Diaz, Cristian Camilo Echeverry Sánchez
 ## Docente: José Albeiro Montes Gil
 Ingeniería de Software II
@@ -16,7 +11,7 @@ bounded contexts) y sus responsabilidades.
 - Definir el mecanismo de comunicación entre microservicios (síncrono vía
 REST y/o asíncrono vía mensajería).
 
-Arquitectura monolítica vs arquitectura de microservicios
+## Arquitectura monolítica vs arquitectura de microservicios
 Considerando el contexto de la empresa con la que se va a desarrollar el proyecto,
 tiene ciertas características particulares como el alto número de referencias, una misma parte
 para la motocicleta tiene varias versiones de varias marcas, esto hace que no solo haya una
@@ -29,13 +24,7 @@ La empresa al estar creciendo debe pensar en escalar, esto pone en desventaja al
 modelo monolítico, ya que es más difícil de escalar que un sistema de microservicios, esto
 debido a su capacidad de poder actualizar servicios sin afectar los diferentes elementos del
 software, adicionalmente el sistema de microservicios maneja una mejor tolerancia a fallos, si
-un sistema monolítico falla, afecta a todo el sistema, caso contrario en el sistema de
-
-Justificación de la arquitectura 2
-
-
-microservicios, si un servicio falla, no afecta a los demás ya que estos operan de forma
-independiente. El despliegue e independencia entre los dos es distinto, por ejemplo, si la
+un sistema monolítico falla, afecta a todo el sistema, caso contrario en el sistema de microservicios, si un servicio falla, no afecta a los demás ya que estos operan de forma independiente. El despliegue e independencia entre los dos es distinto, por ejemplo, si la
 empresa debe realizar un cambio en cuanto a políticas de proveedores u otro cambio en la
 lógica del sistema, se debe reiniciar todo el sistema completo, en cambio, si se debe realizar
 un cambio en la lógica de algún servicio, el único que se reinicia él es el servicio actualizado.
@@ -45,7 +34,7 @@ deben ser del mismo tipo, esto sirve en caso de que la empresa en algún momento
 tomar decisiones en cuanto al almacenamiento de la información, por ejemplo, manejar una
 base de datos única para un tipo de proveedor o moto.
 
-Definición de los microservicios y sus responsabilidades
+## Definición de los microservicios y sus responsabilidades
 Para el sistema que vamos a desarrollar identificamos cinco dominios principales, los
 cuales separaremos en microservicios con responsabilidades específicas. Esta división
 permite que cada parte del sistema pueda desarrollarse y modificarse de manera
@@ -59,10 +48,6 @@ y permitirá realizar búsquedas y filtros.
 existencias de cada producto y los movimientos de inventario, como entradas,
 salidas, ajustes, traslados y devoluciones. También conservará la trazabilidad de
 los movimientos realizados.
-
-Justificación de la arquitectura 3
-
-
 - Microservicio de Compras y Proveedores: administrará la información de los
 proveedores y su relación con los productos. Además, gestionará la creación y
 seguimiento de órdenes de compra y la recepción de mercancía.
@@ -74,7 +59,7 @@ producto tenga existencias por debajo del mínimo establecido, además de produc
 reportes e indicadores sobre existencias, valorización del inventario, rotación de
 productos y demás información necesaria para el dashboard.
 
-Mecanismo de comunicación entre microservicios
+## Mecanismo de comunicación entre microservicios
 La comunicación entre los microservicios del sistema la realizaremos de forma
 síncrona mediante API REST, utilizando HTTP y JSON para el intercambio de información.
 Cada microservicio expondrá únicamente las operaciones necesarias para que los demás
