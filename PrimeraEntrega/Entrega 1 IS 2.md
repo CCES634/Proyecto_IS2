@@ -51,8 +51,11 @@ Fortalezas:
 
 Oportunidades de mejora:
 
-- Las fuentes proporcionadas no incluyen una evaluación explícita o listado de debilidades y oportunidades de mejora específicas para el módulo de inventarios. Únicamente se mencionan las actualizaciones periódicas del sistema (Tools Releases y Applications Updates) orientadas a resolver verificaciones manuales y optimizar procesos interactivos.
+- Alta complejidad de configuración: Requiere configurar constantes, sucursales/plantas, ubicaciones, unidades de medida, referencias, tipos de documento, AAIs, etc.
+- Curva de aprendizaje elevada: La gran cantidad de parámetros y módulos hace que el usuario necesite capacitación específica.
+- Funciones avanzadas pueden requerir módulos adicionales: JDE separa Inventory Management de Warehouse Management, Manufacturing, Quality Management, etc. Oracle incluso especifica productos/licencias adicionales para determinadas funcionalidades.
 
+## SAP
 
 SAP (siglas en alemán de Systemanalyse Programmentwicklung, traducido
 
@@ -90,10 +93,7 @@ siguientes dinámicas clave.
 
 - Integración nativa y visión unificada: Se conecta de forma fluida con las áreas centrales de la empresa, como compras y abastecimiento (MM), ventas (SD), planificación de la producción (PP) y contabilidad/finanzas (FI/CO). Esto centraliza la información en una única fuente de verdad y actualiza al instante la disponibilidad de existencias y los estados financieros.
 
-- Cobertura del ciclo de vida del producto: Permite controlar minuciosamente todas las categorías de inventario, incluyendo materias
-
-
-- primas y componentes, trabajo en curso (WIP), productos terminados y suministros de mantenimiento, reparación y funcionamiento (MRO).
+- Cobertura del ciclo de vida del producto: Permite controlar minuciosamente todas las categorías de inventario, incluyendo materias primas y componentes, trabajo en curso (WIP), productos terminados y suministros de mantenimiento, reparación y funcionamiento (MRO).
 
 - Soporte para múltiples técnicas de optimización: Incorpora de manera nativa metodologías estratégicas de control de existencias, tales como la segmentación (Análisis ABC), Just-in-Time (JIT), stock de seguridad, Cantidad de Pedido Económica (EOQ) y reglas de rotación de salidas como FIFO y LIFO.
 
@@ -120,7 +120,7 @@ tradicional.
 
 - Altos costos e implementación compleja: La adopción del sistema requiere una inversión inicial considerable en licencias, infraestructura y consultoría, sumado a una curva de aprendizaje exigente para los usuarios y dependencia del lenguaje especializado ABAP para personalizar procesos.
 
-Obbo Inventory:
+## Obbo Inventory:
 
 Odoo es una plataforma de gestión empresarial compuesta por diferentes aplicaciones
 
