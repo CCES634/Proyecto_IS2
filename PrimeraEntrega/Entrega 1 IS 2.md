@@ -31,6 +31,11 @@ Por lo anterior, la empresa requiere un sistema de gestión de inventarios que c
 
 El sistema para MotoPartes Andina S.A.S. estará orientado a modernizar el control de inventario de repuestos y accesorios para motocicletas, actualmente manejado mediante registros manuales y hojas de cálculo. Permitirá gestionar productos, categorías, proveedores, bodegas, stock, movimientos, órdenes de compra, devoluciones, usuarios, alertas, trazabilidad, búsquedas, reportes e indicadores, cubriendo así los requerimientos funcionales mínimos establecidos para el proyecto.
 
+Como característica propia del negocio, se incluirá la compatibilidad de repuestos con marcas y modelos de motocicletas, permitiendo asociar y consultar qué productos son compatibles con cada referencia. La información ingresada será validada mediante Marshmallow, comprobando campos obligatorios, tipos de datos y restricciones antes de procesarla o almacenarla.
+Para lograr estas funcionalidades, el sistema se dividirá en los microservicios de Catálogo, Inventario, Compras y Proveedores, Usuarios y Autenticación, y Reportes y Alertas. Cada servicio tendrá responsabilidades definidas y su propia base de datos (a excepción de reportes y alertas), y se comunicará con los demás mediante API REST. Las peticiones externas pasarán por un API Gateway propio, manteniendo separados los diferentes dominios del sistema y evitando el acceso directo entre bases de datos.
+
+El sistema también será documentado mediante API, contenerizado y posteriormente desplegado utilizando las herramientas exigidas en el proyecto. Quedan fuera del alcance procesos como facturación, contabilidad, nómina, pagos en línea o comercio electrónico, ya que la solución estará enfocada específicamente en la gestión de inventario y abastecimiento de MotoPartes Andina.
+
 ## JD Edwards:
 
 El sistema de gestión de inventarios no tiene un nombre comercial independiente; se
