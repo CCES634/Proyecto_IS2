@@ -12,6 +12,25 @@ Ingeniería de Software II
 
 - Extraer conclusiones que alimenten la definición del alcance del sistema propio.
 
+## Definición del problema y alcance del sistema
+
+# Contextualización de la empresa
+
+MotoPartes Andina S.A.S. es una empresa ficticia ubicada en Manizales dedicada a la comercialización y distribución de repuestos y accesorios para motocicletas. La empresa se especializa en la distribución de productos de diversas marcas, tales como filtros, bujías, pastillas de freno, baterías, llantas, kits de arrastre y componentes eléctricos. Estos productos son destinados tanto a clientes particulares como a talleres de motocicletas.
+En la actualidad, la empresa gestiona la mayor parte de su inventario mediante hojas de cálculo y registros manuales. A medida que ha aumentado la cantidad de productos, proveedores y movimientos entre sus bodegas, este método ha comenzado a generar problemas como diferencias entre las existencias físicas y las registradas, dificultad para conocer el stock disponible en cada ubicación, retrasos en el reabastecimiento y poca trazabilidad sobre las entradas, salidas, ajustes y traslados realizados.
+Por otra parte, debido a la naturaleza del negocio, resulta imperativo mantener información organizada sobre la compatibilidad de los repuestos con diferentes marcas y modelos de motocicletas. Asimismo, es crucial controlar a los proveedores, las órdenes de compra, las devoluciones y los niveles mínimos de existencias con el fin de evitar faltantes de productos.
+En este sentido, MotoPartes Andina busca implementar un sistema de gestión de inventarios que permita administrar de manera centralizada productos, categorías, proveedores, bodegas, existencias, movimientos, compras y usuarios, generando alertas, manteniendo la trazabilidad de las operaciones y proporcionando reportes e indicadores para respaldar la toma de decisiones. El sistema deberá ser diseñado para poder mantenerse y crecer con las necesidades de la empresa, mediante la separación de sus principales procesos de negocio mediante una arquitectura de microservicios.
+
+# Definición del problema
+
+MotoPartes Andina S.A.S. presenta dificultades en la gestión de su inventario debido al uso de hojas de cálculo y registros manuales para controlar productos, existencias, movimientos entre bodegas y compras. Esta situación genera diferencias entre el inventario físico y el registrado, dificulta conocer el stock disponible en cada ubicación, retrasa el reabastecimiento y limita la trazabilidad de las entradas, salidas, ajustes y traslados. Además, la variedad de repuestos y sus diferentes compatibilidades con marcas y modelos de motocicletas incrementan la complejidad de mantener la información organizada y actualizada.
+
+Por lo anterior, la empresa requiere un sistema de gestión de inventarios que centralice y automatice la administración de productos, proveedores, bodegas, existencias, compras y movimientos, incorporando alertas y reportes que faciliten la toma de decisiones.
+
+# Alcance
+
+El sistema para MotoPartes Andina S.A.S. estará orientado a modernizar el control de inventario de repuestos y accesorios para motocicletas, actualmente manejado mediante registros manuales y hojas de cálculo. Permitirá gestionar productos, categorías, proveedores, bodegas, stock, movimientos, órdenes de compra, devoluciones, usuarios, alertas, trazabilidad, búsquedas, reportes e indicadores, cubriendo así los requerimientos funcionales mínimos establecidos para el proyecto.
+
 ## JD Edwards:
 
 El sistema de gestión de inventarios no tiene un nombre comercial independiente; se
@@ -30,7 +49,7 @@ en el ERP. Define y gestiona artículos discretos de inventario para rastrearlos
 
 lo largo de toda la cadena operativa.
 
-## Funcionalidades clave:
+# Funcionalidades clave:
 
 - Integración nativa con el ERP: La gestión de inventarios está estrechamente integrada con la contabilidad general (General Ledger), costos de proyectos (Job Costing), activos fijos, nómina, compras y ventas.
 
@@ -41,7 +60,7 @@ lo largo de toda la cadena operativa.
 
 - Personalización del usuario: Incluye funciones definidas por el usuario (User-Defined Features), lo que permite crear consultas personalizadas y configurar formatos de cuadrícula para visualizar el inventario según las necesidades del negocio.
 
-Fortalezas:
+# Fortalezas:
 
 - Visión global e integrada: Al estar diseñado para ver el panorama completo de la empresa, evita el manejo del inventario como un proceso aislado y asegura la sincronización contable y operativa.
 
@@ -49,7 +68,7 @@ Fortalezas:
 
 - Evolución y automatización continua: Incorpora mejoras periódicas para reducir verificaciones manuales y dar soporte a operaciones guiadas por inventario.
 
-Oportunidades de mejora:
+# Oportunidades de mejora:
 
 - Alta complejidad de configuración: Requiere configurar constantes, sucursales/plantas, ubicaciones, unidades de medida, referencias, tipos de documento, AAIs, etc.
 - Curva de aprendizaje elevada: La gran cantidad de parámetros y módulos hace que el usuario necesite capacitación específica.
