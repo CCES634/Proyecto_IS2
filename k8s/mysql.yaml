@@ -1,0 +1,67 @@
+# MySQL con almacenamiento persistente (volumen). Cada microservicio usa su propia
+# base de datos y su propio usuario dentro de esta instancia.
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+  namespace: motopartes
+spec:
+  clusterIP: None          # Service "headless" para el StatefulSet
+  selector:
+    app: mysql
+  ports:
+    - port: 3306
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysql
+  namespace: motopartes
+spec:
+  serviceName: mysql
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:8.4
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: motopartes-secret
+                  key: MYSQL_ROOT_PASSWORD
+          volumeMounts:
+            - name: datos-mysql
+              mountPath: /var/lib/mysql
+            - name: init
+              mountPath: /docker-entrypoint-initdb.d
+              readOnly: true
+          readinessProbe:
+            exec:
+              command: ["sh", "-c", "mysqladmin ping -h 127.0.0.1 -uroot -p\"$MYSQL_ROOT_PASSWORD\""]
+            initialDelaySeconds: 15
+            periodSeconds: 5
+          resources:
+            requests: { cpu: "250m", memory: "512Mi" }
+            limits:   { cpu: "1",    memory: "1Gi" }
+      volumes:
+        - name: init
+          secret:
+            secretName: mysql-init
+  volumeClaimTemplates:
+    - metadata:
+        name: datos-mysql
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 2Gi
