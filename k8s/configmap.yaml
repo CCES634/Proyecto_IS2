@@ -1,0 +1,17 @@
+# Variables y URLs NO sensibles. Las URLs usan los Services de Kubernetes como
+# Service Discovery (DNS interno: http://<servicio>:5000).
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: motopartes-config
+  namespace: motopartes
+data:
+  USUARIOS_URL: "http://usuarios:5000"
+  CATALOGO_URL: "http://catalogo:5000"
+  INVENTARIO_URL: "http://inventario:5000"
+  COMPRAS_URL: "http://compras:5000"
+  REPORTES_URL: "http://reportes:5000"
+  JWT_EXPIRACION_MINUTOS: "60"
+  MODO_DEMO: "true"
+  DATOS_DEMO: "true"
+  VALIDAR_PRODUCTOS: "true"

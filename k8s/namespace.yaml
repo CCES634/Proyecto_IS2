@@ -1,0 +1,7 @@
+# Agrupa todos los recursos del sistema
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: motopartes
+  labels:
+    app.kubernetes.io/part-of: motopartes-inventario
