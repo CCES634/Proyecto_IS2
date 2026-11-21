@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Bases SQLite de pruebas locales
+*.db
+
+# Entorno
+.env
+.idea/
+.vscode/
+.DS_Store
