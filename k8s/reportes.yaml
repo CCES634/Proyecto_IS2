@@ -1,0 +1,61 @@
+# Microservicio de Reportes y Alertas (sin base de datos)
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reportes
+  namespace: motopartes
+  labels:
+    app: reportes
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reportes
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: reportes
+    spec:
+      containers:
+        - name: reportes
+          image: motopartes/reportes:1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5000
+          envFrom:
+            - configMapRef:
+                name: motopartes-config
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 40
+            periodSeconds: 15
+            failureThreshold: 4
+          resources:
+            requests: { cpu: "100m", memory: "128Mi" }
+            limits:   { cpu: "500m", memory: "256Mi" }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: reportes
+  namespace: motopartes
+spec:
+  type: ClusterIP   # solo accesible dentro del clúster
+  selector:
+    app: reportes
+  ports:
+    - port: 5000
+      targetPort: 5000
