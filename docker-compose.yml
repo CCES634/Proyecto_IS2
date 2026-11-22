@@ -1,0 +1,85 @@
+# Entorno de DESARROLLO LOCAL (apoyo). El despliegue oficial es en Kubernetes (carpeta k8s/).
+# Uso:  docker compose up --build    ->  Gateway en http://localhost:8000
+# Solo el Gateway publica puerto: los microservicios no son accesibles desde fuera.
+
+x-servicio: &servicio
+  restart: unless-stopped
+  depends_on:
+    mysql:
+      condition: service_healthy
+
+x-entorno-comun: &entorno-comun
+  JWT_SECRET: ${JWT_SECRET:-secreto-desarrollo-motopartes-2026}
+  CATALOGO_URL: http://catalogo:5000
+  INVENTARIO_URL: http://inventario:5000
+
+services:
+  mysql:
+    image: mysql:8.4
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-RootPass2026}
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./mysql/init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-p${MYSQL_ROOT_PASSWORD:-RootPass2026}"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+  usuarios:
+    <<: *servicio
+    build: ./servicios/usuarios
+    image: motopartes/usuarios:1.0
+    environment:
+      <<: *entorno-comun
+      DATABASE_URL: mysql+pymysql://usuarios_app:UsuariosPass2026@mysql:3306/usuarios_db
+
+  catalogo:
+    <<: *servicio
+    build: ./servicios/catalogo
+    image: motopartes/catalogo:1.0
+    environment:
+      <<: *entorno-comun
+      DATABASE_URL: mysql+pymysql://catalogo_app:CatalogoPass2026@mysql:3306/catalogo_db
+
+  inventario:
+    <<: *servicio
+    build: ./servicios/inventario
+    image: motopartes/inventario:1.0
+    environment:
+      <<: *entorno-comun
+      DATABASE_URL: mysql+pymysql://inventario_app:InventarioPass2026@mysql:3306/inventario_db
+
+  compras:
+    <<: *servicio
+    build: ./servicios/compras
+    image: motopartes/compras:1.0
+    environment:
+      <<: *entorno-comun
+      DATABASE_URL: mysql+pymysql://compras_app:ComprasPass2026@mysql:3306/compras_db
+
+  reportes:
+    build: ./servicios/reportes
+    image: motopartes/reportes:1.0
+    restart: unless-stopped
+    environment:
+      <<: *entorno-comun
+
+  gateway:
+    build: ./servicios/gateway
+    image: motopartes/gateway:1.0
+    restart: unless-stopped
+    depends_on: [usuarios, catalogo, inventario, compras, reportes]
+    ports:
+      - "8000:8000"
+    environment:
+      JWT_SECRET: ${JWT_SECRET:-secreto-desarrollo-motopartes-2026}
+      USUARIOS_URL: http://usuarios:5000
+      CATALOGO_URL: http://catalogo:5000
+      INVENTARIO_URL: http://inventario:5000
+      COMPRAS_URL: http://compras:5000
+      REPORTES_URL: http://reportes:5000
+
+volumes:
+  mysql-data:
