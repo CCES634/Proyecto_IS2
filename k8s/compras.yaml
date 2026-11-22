@@ -1,0 +1,67 @@
+# Microservicio de Compras y Proveedores
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: compras
+  namespace: motopartes
+  labels:
+    app: compras
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: compras
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: compras
+    spec:
+      containers:
+        - name: compras
+          image: motopartes/compras:1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5000
+          envFrom:
+            - configMapRef:
+                name: motopartes-config
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: motopartes-secret
+                  key: COMPRAS_DATABASE_URL
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 40
+            periodSeconds: 15
+            failureThreshold: 4
+          resources:
+            requests: { cpu: "100m", memory: "128Mi" }
+            limits:   { cpu: "500m", memory: "256Mi" }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: compras
+  namespace: motopartes
+spec:
+  type: ClusterIP   # solo accesible dentro del clúster
+  selector:
+    app: compras
+  ports:
+    - port: 5000
+      targetPort: 5000

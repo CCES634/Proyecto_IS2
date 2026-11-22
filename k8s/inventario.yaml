@@ -1,0 +1,89 @@
+# Microservicio de Inventario (el de mayor carga: consultas de stock)
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inventario
+  namespace: motopartes
+  labels:
+    app: inventario
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: inventario
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: inventario
+    spec:
+      containers:
+        - name: inventario
+          image: motopartes/inventario:1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5000
+          envFrom:
+            - configMapRef:
+                name: motopartes-config
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: motopartes-secret
+                  key: INVENTARIO_DATABASE_URL
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 40
+            periodSeconds: 15
+            failureThreshold: 4
+          resources:
+            requests: { cpu: "100m", memory: "128Mi" }
+            limits:   { cpu: "500m", memory: "256Mi" }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: inventario
+  namespace: motopartes
+spec:
+  type: ClusterIP   # solo accesible dentro del clúster
+  selector:
+    app: inventario
+  ports:
+    - port: 5000
+      targetPort: 5000
+---
+# Escalado horizontal automático por uso de CPU (RNF05).
+# Requiere metrics-server (en minikube: minikube addons enable metrics-server)
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: inventario
+  namespace: motopartes
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: inventario
+  minReplicas: 2
+  maxReplicas: 5
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 70
