@@ -1,12 +1,10 @@
-# MySQL con almacenamiento persistente (volumen). Cada microservicio usa su propia
-# base de datos y su propio usuario dentro de esta instancia.
 apiVersion: v1
 kind: Service
 metadata:
   name: mysql-usuarios
   namespace: motopartes
 spec:
-  clusterIP: None          # Service "headless" para el StatefulSet
+  clusterIP: None
   selector:
     app: mysql-usuarios
   ports:
@@ -126,6 +124,83 @@ spec:
                 secretKeyRef:
                   name: motopartes-secret
                   key: CATALOGO_DB_PASSWORD
+          volumeMounts:
+            - name: datos-mysql
+              mountPath: /var/lib/mysql
+          readinessProbe:
+            exec:
+              command:
+                - sh
+                - -c
+                - >-
+                  MYSQL_PWD="$MYSQL_PASSWORD" mysql --protocol=TCP
+                  -h 127.0.0.1 -u "$MYSQL_USER" -D "$MYSQL_DATABASE"
+                  -e "SELECT 1"
+            initialDelaySeconds: 15
+            periodSeconds: 5
+            timeoutSeconds: 3
+          resources:
+            requests: { cpu: "250m", memory: "512Mi" }
+            limits: { cpu: "1", memory: "1Gi" }
+  volumeClaimTemplates:
+    - metadata:
+        name: datos-mysql
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 2Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-inventario
+  namespace: motopartes
+spec:
+  clusterIP: None
+  selector:
+    app: mysql-inventario
+  ports:
+    - name: mysql
+      port: 3306
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysql-inventario
+  namespace: motopartes
+spec:
+  serviceName: mysql-inventario
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql-inventario
+  template:
+    metadata:
+      labels:
+        app: mysql-inventario
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:8.4
+          ports:
+            - name: mysql
+              containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: motopartes-secret
+                  key: MYSQL_ROOT_PASSWORD
+            - name: MYSQL_DATABASE
+              value: inventario_db
+            - name: MYSQL_USER
+              value: inventario_app
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: motopartes-secret
+                  key: INVENTARIO_DB_PASSWORD
           volumeMounts:
             - name: datos-mysql
               mountPath: /var/lib/mysql
