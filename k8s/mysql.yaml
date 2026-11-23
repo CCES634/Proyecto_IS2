@@ -52,21 +52,21 @@ spec:
           volumeMounts:
             - name: datos-mysql
               mountPath: /var/lib/mysql
-            - name: init
-              mountPath: /docker-entrypoint-initdb.d
-              readOnly: true
           readinessProbe:
             exec:
-              command: ["sh", "-c", "mysqladmin ping -h 127.0.0.1 -uroot -p\"$MYSQL_ROOT_PASSWORD\""]
+              command:
+                - sh
+                - -c
+                - >-
+                  MYSQL_PWD="$MYSQL_PASSWORD" mysql --protocol=TCP
+                  -h 127.0.0.1 -u "$MYSQL_USER" -D "$MYSQL_DATABASE"
+                  -e "SELECT 1"
             initialDelaySeconds: 15
             periodSeconds: 5
+            timeoutSeconds: 3
           resources:
             requests: { cpu: "250m", memory: "512Mi" }
-            limits:   { cpu: "1",    memory: "1Gi" }
-      volumes:
-        - name: init
-          secret:
-            secretName: mysql-init
+            limits: { cpu: "1", memory: "1Gi" }
   volumeClaimTemplates:
     - metadata:
         name: datos-mysql
