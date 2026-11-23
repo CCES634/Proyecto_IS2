@@ -1,0 +1,20 @@
+[2026-11-22 23:58:44,758] cces-HP-Laptop-14-cf3xxx/INFO/locust.main: Starting Locust 2.47.0
+[2026-11-22 23:58:44,759] cces-HP-Laptop-14-cf3xxx/INFO/locust.main: Run time limit set to 60 seconds
+[2026-11-22 23:58:45,062] cces-HP-Laptop-14-cf3xxx/INFO/locust.runners: Ramping to 20 users at a rate of 5.00 per second
+[2026-11-22 23:58:48,065] cces-HP-Laptop-14-cf3xxx/INFO/locust.runners: All users spawned: {"CE04": 20} (20 total users)
+[2026-11-22 23:59:44,550] cces-HP-Laptop-14-cf3xxx/INFO/locust.main: --run-time limit reached, shutting down
+[2026-11-22 23:59:44,597] cces-HP-Laptop-14-cf3xxx/INFO/locustfile: CE04: salidas aceptadas=585, rechazos por stock=0, saldo final=99415
+[2026-11-22 23:59:44,651] cces-HP-Laptop-14-cf3xxx/INFO/locust.main: Shutting down (exit code 0)
+Type     Name                                                                          # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+POST     /api/inventario/movimientos/salidas                                              585     0(0.00%) |     30      19      85     28 |    9.80        0.00
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                                       585     0(0.00%) |     30      19      85     28 |    9.80        0.00
+
+Response time percentiles (approximated)
+Type     Name                                                                                  50%    66%    75%    80%    90%    95%    98%    99%  99.9% 99.99%   100% # reqs
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+POST     /api/inventario/movimientos/salidas                                                    28     33     36     37     40     43     56     69     86     86     86    585
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+         Aggregated                                                                             28     33     36     37     40     43     56     69     86     86     86    585
+

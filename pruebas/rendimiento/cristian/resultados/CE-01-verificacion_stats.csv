@@ -1,0 +1,3 @@
+Type,Name,Request Count,Failure Count,Median Response Time,Average Response Time,Min Response Time,Max Response Time,Average Content Size,Requests/s,Failures/s,50%,66%,75%,80%,90%,95%,98%,99%,99.9%,99.99%,100%
+GET,/api/inventario/existencias?bodega_id=1,63,0,16,15.25684461910079,7.777413000439992,32.759259000158636,1304.0,2.2628562003715147,0.0,16,17,17,18,19,29,31,33,33,33,33
+,Aggregated,63,0,16,15.25684461910079,7.777413000439992,32.759259000158636,1304.0,2.2628562003715147,0.0,16,17,17,18,19,29,31,33,33,33,33

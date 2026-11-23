@@ -1,0 +1,2 @@
+Method,Name,Error,Occurrences,First Seen,Last Seen
+POST,/api/inventario/movimientos/entradas,"CatchResponseError('Se esperaba HTTP 201, recibido 503')",2,2026-11-23T05:10:53Z,2026-11-23T05:10:54Z

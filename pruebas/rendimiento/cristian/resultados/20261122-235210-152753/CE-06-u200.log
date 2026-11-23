@@ -1,0 +1,19 @@
+[2026-11-23 00:02:17,321] cces-HP-Laptop-14-cf3xxx/INFO/locust.main: Starting Locust 2.47.0
+[2026-11-23 00:02:17,321] cces-HP-Laptop-14-cf3xxx/INFO/locust.main: Run time limit set to 60 seconds
+[2026-11-23 00:02:17,552] cces-HP-Laptop-14-cf3xxx/INFO/locust.runners: Ramping to 200 users at a rate of 25.00 per second
+[2026-11-23 00:02:24,568] cces-HP-Laptop-14-cf3xxx/INFO/locust.runners: All users spawned: {"CE06": 200} (200 total users)
+[2026-11-23 00:03:17,102] cces-HP-Laptop-14-cf3xxx/INFO/locust.main: --run-time limit reached, shutting down
+[2026-11-23 00:03:17,826] cces-HP-Laptop-14-cf3xxx/INFO/locust.main: Shutting down (exit code 0)
+Type     Name                                                                          # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+POST     /api/inventario/movimientos/entradas                                            4402     0(0.00%) |    611      20    2413    510 |   72.87        0.00
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                                      4402     0(0.00%) |    611      20    2413    510 |   72.87        0.00
+
+Response time percentiles (approximated)
+Type     Name                                                                                  50%    66%    75%    80%    90%    95%    98%    99%  99.9% 99.99%   100% # reqs
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+POST     /api/inventario/movimientos/entradas                                                  510    650    760    830   1100   1300   1600   1800   2200   2400   2400   4402
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+         Aggregated                                                                            510    650    760    830   1100   1300   1600   1800   2200   2400   2400   4402
+

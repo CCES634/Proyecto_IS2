@@ -1,0 +1,19 @@
+[2026-11-23 00:01:16,681] cces-HP-Laptop-14-cf3xxx/INFO/locust.main: Starting Locust 2.47.0
+[2026-11-23 00:01:16,682] cces-HP-Laptop-14-cf3xxx/INFO/locust.main: Run time limit set to 60 seconds
+[2026-11-23 00:01:16,913] cces-HP-Laptop-14-cf3xxx/INFO/locust.runners: Ramping to 100 users at a rate of 25.00 per second
+[2026-11-23 00:01:19,917] cces-HP-Laptop-14-cf3xxx/INFO/locust.runners: All users spawned: {"CE06": 100} (100 total users)
+[2026-11-23 00:02:16,469] cces-HP-Laptop-14-cf3xxx/INFO/locust.main: --run-time limit reached, shutting down
+[2026-11-23 00:02:16,565] cces-HP-Laptop-14-cf3xxx/INFO/locust.main: Shutting down (exit code 0)
+Type     Name                                                                          # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+POST     /api/inventario/movimientos/entradas                                            2891     0(0.00%) |     45      18     498     31 |   48.32        0.00
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                                      2891     0(0.00%) |     45      18     498     31 |   48.32        0.00
+
+Response time percentiles (approximated)
+Type     Name                                                                                  50%    66%    75%    80%    90%    95%    98%    99%  99.9% 99.99%   100% # reqs
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+POST     /api/inventario/movimientos/entradas                                                   31     37     42     48     74    110    240    310    470    500    500   2891
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+         Aggregated                                                                             31     37     42     48     74    110    240    310    470    500    500   2891
+
