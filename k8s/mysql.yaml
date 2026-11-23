@@ -3,30 +3,31 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: mysql
+  name: mysql-usuarios
   namespace: motopartes
 spec:
   clusterIP: None          # Service "headless" para el StatefulSet
   selector:
-    app: mysql
+    app: mysql-usuarios
   ports:
-    - port: 3306
+    - name: mysql
+      port: 3306
 ---
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: mysql
+  name: mysql-usuarios
   namespace: motopartes
 spec:
-  serviceName: mysql
+  serviceName: mysql-usuarios
   replicas: 1
   selector:
     matchLabels:
-      app: mysql
+      app: mysql-usuarios
   template:
     metadata:
       labels:
-        app: mysql
+        app: mysql-usuarios
     spec:
       containers:
         - name: mysql
@@ -39,6 +40,15 @@ spec:
                 secretKeyRef:
                   name: motopartes-secret
                   key: MYSQL_ROOT_PASSWORD
+        - name: MYSQL_DATABASE
+          value: usuarios_db
+        - name: MYSQL_USER
+          value: usuarios_app
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: datos-mysql
+              key: USUARIOS_DB_PASSWORD
           volumeMounts:
             - name: datos-mysql
               mountPath: /var/lib/mysql
