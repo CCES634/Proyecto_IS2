@@ -38,15 +38,15 @@ spec:
                 secretKeyRef:
                   name: motopartes-secret
                   key: MYSQL_ROOT_PASSWORD
-        - name: MYSQL_DATABASE
-          value: usuarios_db
-        - name: MYSQL_USER
-          value: usuarios_app
-        - name: MYSQL_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: datos-mysql
-              key: USUARIOS_DB_PASSWORD
+            - name: MYSQL_DATABASE
+              value: usuarios_db
+            - name: MYSQL_USER
+              value: usuarios_app
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: motopartes-secret
+                  key: USUARIOS_DB_PASSWORD
           volumeMounts:
             - name: datos-mysql
               mountPath: /var/lib/mysql
