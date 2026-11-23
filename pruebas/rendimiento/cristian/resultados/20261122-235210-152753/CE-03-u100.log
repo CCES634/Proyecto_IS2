@@ -1,0 +1,19 @@
+[2026-11-22 23:55:42,801] cces-HP-Laptop-14-cf3xxx/INFO/locust.main: Starting Locust 2.47.0
+[2026-11-22 23:55:42,802] cces-HP-Laptop-14-cf3xxx/INFO/locust.main: Run time limit set to 60 seconds
+[2026-11-22 23:55:43,017] cces-HP-Laptop-14-cf3xxx/INFO/locust.runners: Ramping to 100 users at a rate of 25.00 per second
+[2026-11-22 23:55:46,023] cces-HP-Laptop-14-cf3xxx/INFO/locust.runners: All users spawned: {"CE03": 100} (100 total users)
+[2026-11-22 23:56:42,589] cces-HP-Laptop-14-cf3xxx/INFO/locust.main: --run-time limit reached, shutting down
+[2026-11-22 23:56:42,671] cces-HP-Laptop-14-cf3xxx/INFO/locust.main: Shutting down (exit code 0)
+Type     Name                                                                          # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      /api/inventario/existencias?bodega_id=1                                         2928     0(0.00%) |     16       7     277     14 |   48.98        0.00
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                                      2928     0(0.00%) |     16       7     277     14 |   48.98        0.00
+
+Response time percentiles (approximated)
+Type     Name                                                                                  50%    66%    75%    80%    90%    95%    98%    99%  99.9% 99.99%   100% # reqs
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+GET      /api/inventario/existencias?bodega_id=1                                                14     16     17     17     20     24     83    100    270    280    280   2928
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+         Aggregated                                                                             14     16     17     17     20     24     83    100    270    280    280   2928
+

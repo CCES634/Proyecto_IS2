@@ -1,0 +1,25 @@
+[2026-11-23 00:11:07,211] cces-HP-Laptop-14-cf3xxx/INFO/locust.main: Starting Locust 2.47.0
+[2026-11-23 00:11:07,212] cces-HP-Laptop-14-cf3xxx/INFO/locust.main: Run time limit set to 60 seconds
+[2026-11-23 00:11:07,653] cces-HP-Laptop-14-cf3xxx/INFO/locust.runners: Ramping to 300 users at a rate of 25.00 per second
+[2026-11-23 00:11:18,665] cces-HP-Laptop-14-cf3xxx/INFO/locust.runners: All users spawned: {"CE11": 300} (300 total users)
+[2026-11-23 00:12:06,898] cces-HP-Laptop-14-cf3xxx/INFO/locust.main: --run-time limit reached, shutting down
+[2026-11-23 00:12:08,976] cces-HP-Laptop-14-cf3xxx/INFO/locust.main: Shutting down (exit code 0)
+Type     Name                                                                          # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      /api/compras/ordenes                                                             986     0(0.00%) |    931      17    3292    720 |   15.98        0.00
+GET      /api/inventario/existencias?bodega_id=1                                         2392     0(0.00%) |   1236       8    4705   1200 |   38.77        0.00
+GET      /api/inventario/kardex?producto_id=24                                            997     0(0.00%) |   2296      18    6024   2200 |   16.16        0.00
+POST     /api/inventario/movimientos/entradas                                             471     0(0.00%) |   1673      24    4944   1600 |    7.63        0.00
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                                      4846     0(0.00%) |   1435       8    6024   1400 |   78.54        0.00
+
+Response time percentiles (approximated)
+Type     Name                                                                                  50%    66%    75%    80%    90%    95%    98%    99%  99.9% 99.99%   100% # reqs
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+GET      /api/compras/ordenes                                                                  720   1400   1700   1800   2200   2500   2800   3000   3300   3300   3300    986
+GET      /api/inventario/existencias?bodega_id=1                                              1200   1700   2000   2200   2600   3000   3500   3800   4500   4700   4700   2392
+GET      /api/inventario/kardex?producto_id=24                                                2200   2900   3200   3400   3900   4300   4800   4900   6000   6000   6000    997
+POST     /api/inventario/movimientos/entradas                                                 1600   2100   2400   2600   3100   3600   4000   4100   4900   4900   4900    471
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+         Aggregated                                                                           1400   1900   2200   2400   3000   3500   4100   4400   5100   6000   6000   4846
+

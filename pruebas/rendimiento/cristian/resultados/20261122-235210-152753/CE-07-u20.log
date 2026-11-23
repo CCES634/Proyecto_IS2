@@ -1,0 +1,19 @@
+[2026-11-23 00:04:21,003] cces-HP-Laptop-14-cf3xxx/INFO/locust.main: Starting Locust 2.47.0
+[2026-11-23 00:04:21,004] cces-HP-Laptop-14-cf3xxx/INFO/locust.main: Run time limit set to 60 seconds
+[2026-11-23 00:04:21,291] cces-HP-Laptop-14-cf3xxx/INFO/locust.runners: Ramping to 20 users at a rate of 5.00 per second
+[2026-11-23 00:04:24,293] cces-HP-Laptop-14-cf3xxx/INFO/locust.runners: All users spawned: {"CE07": 20} (20 total users)
+[2026-11-23 00:05:20,750] cces-HP-Laptop-14-cf3xxx/INFO/locust.main: --run-time limit reached, shutting down
+[2026-11-23 00:05:20,985] cces-HP-Laptop-14-cf3xxx/INFO/locust.main: Shutting down (exit code 0)
+Type     Name                                                                          # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+POST     /api/inventario/movimientos/traslados                                            576     0(0.00%) |     36      21     154     32 |    9.65        0.00
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                                       576     0(0.00%) |     36      21     154     32 |    9.65        0.00
+
+Response time percentiles (approximated)
+Type     Name                                                                                  50%    66%    75%    80%    90%    95%    98%    99%  99.9% 99.99%   100% # reqs
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+POST     /api/inventario/movimientos/traslados                                                  32     38     41     44     52     63     94    130    150    150    150    576
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+         Aggregated                                                                             32     38     41     44     52     63     94    130    150    150    150    576
+

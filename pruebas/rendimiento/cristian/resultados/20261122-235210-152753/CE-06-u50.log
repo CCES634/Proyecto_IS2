@@ -1,0 +1,19 @@
+[2026-11-23 00:00:16,044] cces-HP-Laptop-14-cf3xxx/INFO/locust.main: Starting Locust 2.47.0
+[2026-11-23 00:00:16,045] cces-HP-Laptop-14-cf3xxx/INFO/locust.main: Run time limit set to 60 seconds
+[2026-11-23 00:00:16,246] cces-HP-Laptop-14-cf3xxx/INFO/locust.runners: Ramping to 50 users at a rate of 25.00 per second
+[2026-11-23 00:00:17,249] cces-HP-Laptop-14-cf3xxx/INFO/locust.runners: All users spawned: {"CE06": 50} (50 total users)
+[2026-11-23 00:01:15,830] cces-HP-Laptop-14-cf3xxx/INFO/locust.main: --run-time limit reached, shutting down
+[2026-11-23 00:01:15,915] cces-HP-Laptop-14-cf3xxx/INFO/locust.main: Shutting down (exit code 0)
+Type     Name                                                                          # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+POST     /api/inventario/movimientos/entradas                                            1468     0(0.00%) |     36      19     369     26 |   24.54        0.00
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                                      1468     0(0.00%) |     36      19     369     26 |   24.54        0.00
+
+Response time percentiles (approximated)
+Type     Name                                                                                  50%    66%    75%    80%    90%    95%    98%    99%  99.9% 99.99%   100% # reqs
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+POST     /api/inventario/movimientos/entradas                                                   26     31     34     36     42     59    220    290    360    370    370   1468
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+         Aggregated                                                                             26     31     34     36     42     59    220    290    360    370    370   1468
+

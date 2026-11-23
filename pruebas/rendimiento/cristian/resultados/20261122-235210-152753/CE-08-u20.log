@@ -1,0 +1,19 @@
+[2026-11-23 00:05:22,290] cces-HP-Laptop-14-cf3xxx/INFO/locust.main: Starting Locust 2.47.0
+[2026-11-23 00:05:22,291] cces-HP-Laptop-14-cf3xxx/INFO/locust.main: Run time limit set to 60 seconds
+[2026-11-23 00:05:22,556] cces-HP-Laptop-14-cf3xxx/INFO/locust.runners: Ramping to 20 users at a rate of 5.00 per second
+[2026-11-23 00:05:25,559] cces-HP-Laptop-14-cf3xxx/INFO/locust.runners: All users spawned: {"CE08": 20} (20 total users)
+[2026-11-23 00:06:21,997] cces-HP-Laptop-14-cf3xxx/INFO/locust.main: --run-time limit reached, shutting down
+[2026-11-23 00:06:22,085] cces-HP-Laptop-14-cf3xxx/INFO/locust.main: Shutting down (exit code 0)
+Type     Name                                                                          # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      /api/inventario/kardex?producto_id=18                                            589     0(0.00%) |     15       8      73     16 |    9.90        0.00
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                                       589     0(0.00%) |     15       8      73     16 |    9.90        0.00
+
+Response time percentiles (approximated)
+Type     Name                                                                                  50%    66%    75%    80%    90%    95%    98%    99%  99.9% 99.99%   100% # reqs
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+GET      /api/inventario/kardex?producto_id=18                                                  16     18     18     19     20     23     30     37     73     73     73    589
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+         Aggregated                                                                             16     18     18     19     20     23     30     37     73     73     73    589
+
